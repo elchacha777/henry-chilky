@@ -32,17 +32,17 @@ RUN pip3 install -r requirements.txt
 #COPY db ./db
 #CMD sh -c "python orm.py"
 
-FROM base as worker
 COPY worker ./worker
 COPY run.sh .
 CMD /bin/bash run.sh
 CMD sh -c "python3 -m worker"
 
-FROM base as web
 COPY web ./web
 CMD ["python", "db/orm.py"]
 
 CMD ["uvicorn", "web.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+
+CMD ["createdb", "googlegmail"]
 
 
 
