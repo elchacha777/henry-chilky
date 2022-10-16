@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+undetected_chromedriver
+webdriver_manager
+selenium
+loguru
+redis
+peewee
+psycopg2-binary

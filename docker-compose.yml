@@ -1,0 +1,96 @@
+ version: '3.5'
+ services:
+
+   postgres:
+
+      image: postgres:13-alpine
+      volumes:
+       - postgres_data:/var/lib/postgresql/data/
+      ports:
+        - '5432:5432'
+
+      environment:
+       - POSTGRES_USER:postgres
+       - POSTGRES_PASSWORD:password
+       - POSTGRES_HOST_AUTH_METHOD=trust
+      restart: always
+
+
+   redis:
+
+      image: redis:6.2-alpine
+      hostname: ${REDIS_HOST}
+      container_name: ${REDIS_HOST}
+      restart: always
+      ports:
+       - '${REDIS_PORT}:${REDIS_PORT}'
+      expose:
+        - ${REDIS_PORT}
+      command: redis-server --port ${REDIS_PORT} --save 20 1 --loglevel warning
+      volumes:
+       - ./redis-data:/data
+   hub:
+      restart: always
+      image: selenium/hub:3.141.59-yttrium
+      environment:
+       - SE_EVENT_BUS_HOST=${SELENIUM_CONTAINER_HOST}
+       - GRID_MAX_SESSION=20
+       - GRID_SESSION_TIMEOUT=604800
+       - GRID_BROWSER_TIMEOUT=604800
+      ports:
+       - '4444:4444'
+
+   chrome:
+      restart: always
+      image: selenium/node-chrome-debug:3.141.59-yttrium
+      ports:
+       - "23900:5900"
+      environment:
+       - VNC_NO_PASSWORD=1
+       - HUB_PORT_4444_TCP_ADDR=hub
+       - HUB_PORT_4444_TCP_PORT=4444
+       - SCREEN_WIDTH=1280
+       - SCREEN_HEIGHT=960
+       - SE_OPTS=-sessionTimeout 604800 -browserTimeout 604800
+       - JAVA_OPTS=-Dwebdriver.chrome.whitelistedIps= -Dselenium.LOGGER.level=WARNING
+       - NODE_MAX_SESSION=20
+       - NODE_MAX_INSTANCES=20
+      depends_on:
+       - hub
+      links:
+       - hub
+
+   worker:
+
+      build:
+         context: .
+         target: worker
+      ports:
+        - "8088"
+      restart: always
+      env_file: .env
+      volumes:
+         - ./logs/m_worker:/app/logs
+      depends_on:
+        - redis
+        - postgres
+      links:
+        - postgres:postgres_host
+
+   web:
+
+      build: .
+      volumes:
+        - .:/app
+      restart: always
+      ports:
+        - 8008:8000
+      depends_on:
+        - postgres
+        - redis
+
+
+
+
+ volumes:
+    postgres_data:
