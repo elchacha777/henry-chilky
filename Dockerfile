@@ -10,12 +10,11 @@ ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 
 ## For chromedriver installation: curl/wget/libgconf/unzip
-RUN pip install --upgrade pip
 
 RUN apt-get update -y && apt-get install -y wget curl unzip libgconf-2-4
 ## For project usage: python3/python3-pip/chromium/xvfb
 RUN apt-get update -y && apt-get install -y chromium xvfb python3 python3-pip
-RUN pip install --upgrade pip
+RUN pip3 install --upgrade pip
 
 
 WORKDIR /app
@@ -26,7 +25,7 @@ COPY ./db ./db
 
 COPY ./requirements.txt ./requirements.txt
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 #CMD sh -c "python orm.py"
 
 #FROM base as db
