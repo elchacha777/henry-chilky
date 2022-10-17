@@ -23,6 +23,7 @@ class Worker:
             logger.info(f'{attempts}')
             while attempts:
                 try:
+                    logger.info(f'attempts {attempts}')
                     obj = GoogleReviews(url)
                     obj.get_page()
                     time.sleep(3)
