@@ -13,8 +13,8 @@ def wait_element_for_send(driver, by, element, data):
             input_email.send_keys(data)
             logger.info('Send data')
             return True
-        except:
-            logger.error('Error while sending ')
+        except Exception as e:
+            logger.info(f'{e}')
             attempts -= 1
             time.sleep(1)
     raise 'Error while wait_element_for_send'
@@ -27,8 +27,8 @@ def wait_element_for_click(driver, by, element):
             input_email.click()
             logger.info('Click on button')
             return True
-        except:
-            logger.error('Error while click on button')
+        except Exception as e:
+            logger.info(f'{e}')
             attempts -= 1
             time.sleep(1)
     raise 'Error while wait_element_for_click'
@@ -40,8 +40,8 @@ def switch_to_iframe(driver, by, element):
             driver.switch_to.frame(driver.find_element(by, element))
             logger.info('Switch to frame')
             return True
-        except:
-            logger.error('Error while switch to frame')
+        except Exception as e:
+            logger.info(f'{e}')
             attempts -= 1
             time.sleep(1)
     raise 'Error while switch_to_iframe'

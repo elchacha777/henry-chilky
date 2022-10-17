@@ -93,7 +93,8 @@ if __name__ == '__main__':
                 time.sleep(5)
                 obj.close_context()
                 logger.info(f'{email} left a review')
-            except:
+            except Exception as e:
+                logger.info(f'{e}')
                 obj.close_context()
                 logger.info(f'{email} didnt left a review')
                 attempts -= 1

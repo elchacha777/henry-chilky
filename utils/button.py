@@ -1,5 +1,8 @@
 import time
 
+from envs import get_logger
+
+logger = get_logger('google_reviews')
 
 def get_button(buttons):
     attempts = 20
@@ -13,7 +16,8 @@ def get_button(buttons):
                 elif review == 'Write a review':
                     time.sleep(1)
                     return button
-        except:
+        except Exception as e:
+            logger.info(f'{e}')
             attempts -= 1
             time.sleep(1)
     raise 'No found required button'
@@ -38,7 +42,8 @@ def click_on_button(button):
         try:
             button.click()
             return True
-        except:
+        except Exception as e:
+            logger.info(f'{e}')
             attempts -= 1
             time.sleep(1)
     raise 'Cant click on button'
