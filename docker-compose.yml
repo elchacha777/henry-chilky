@@ -65,9 +65,7 @@
 
       build:
          context: .
-         target: worker
-      ports:
-        - "8088"
+
       restart: always
       env_file: .env
       volumes:

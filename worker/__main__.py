@@ -18,7 +18,7 @@ class Worker:
 
 
         for i in range(get_all_emails() + 1):
-            print(_id)
+            # print(_id)
             attempts = 5
             while attempts:
                 try:
