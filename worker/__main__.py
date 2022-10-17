@@ -41,6 +41,10 @@ class Worker:
                     obj.close_context()
                     logger.info(f'{email} didnt left a review')
                     attempts -=1
+                    if attempts == 0:
+                        _id += 1
+                        break
+
                 else:
                     _id +=1
                     break
