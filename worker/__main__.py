@@ -20,6 +20,7 @@ class Worker:
         for i in range(get_all_emails() + 1):
             # print(_id)
             attempts = 5
+            logger.info(f'{attempts}')
             while attempts:
                 try:
                     obj = GoogleReviews(url)
@@ -27,6 +28,7 @@ class Worker:
                     time.sleep(3)
                     (email, password) = get_email(_id)
                     obj.login(email, password)
+                    logger.info(f'{email} started')
                     time.sleep(7)
                     obj.get_review_page()
                     time.sleep(3)
@@ -34,7 +36,6 @@ class Worker:
                     time.sleep(5)
                     obj.close_context()
                     logger.info(f'{email} left a review')
-
                 except:
                     obj.close_context()
                     logger.info(f'{email} didnt left a review')
