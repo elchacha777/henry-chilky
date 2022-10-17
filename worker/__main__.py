@@ -14,7 +14,7 @@ class Worker:
         self.google_reviews = None
 
     def main(self, url):
-        _id = 22
+        _id = 1
 
 
         for i in range(get_all_emails() + 1):
