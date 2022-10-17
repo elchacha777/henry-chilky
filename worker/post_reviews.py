@@ -43,9 +43,7 @@ class GoogleReviews:
         wait_element_for_click(self.driver, By.ID, 'passwordNext')
         logger.info('Google enter password ')
         time.sleep(5)
-        print('finish')
-        text = self.driver.find_element(By.XPATH, '//*[@id="yDmH0d"]/c-wiz/div/div[2]/div/c-wiz/c-wiz/div/div[3]/div/div/header/h1').text
-        print(text)
+
 
 
     def get_review_page(self):
@@ -62,9 +60,11 @@ class GoogleReviews:
         language = self.driver.execute_script("return window.navigator.userLanguage || window.navigator.language")
         logger.info(f'{language}')
         button = get_button(buttons)
+        time.sleep(5)
+        click_on_button(self.driver, button)
         logger.info(f'{button} to click')
         time.sleep(5)
-        click_on_button(button)
+        # click_on_button(button)
         logger.info('Click on button to leave review')
         time.sleep(3)
         switch_to_iframe(self.driver, By.NAME, 'goog-reviews-write-widget')
