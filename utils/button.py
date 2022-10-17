@@ -7,9 +7,12 @@ logger = get_logger('google_reviews')
 def get_button(buttons):
     attempts = 20
     while attempts:
+        logger.info('start function get_button')
+
         try:
             for button in buttons:
                 review = button.get_attribute('data-value')
+                logger.info(f'get attribute {review}')
                 if review == 'Оставить отзыв':
                     time.sleep(1)
                     return button
