@@ -1,5 +1,8 @@
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 from envs import get_logger
 from utils.button import get_button, click_on_button
 from utils.wait import wait_element_for_click, wait_element_for_send, switch_to_iframe
@@ -69,9 +72,14 @@ class GoogleReviews:
         time.sleep(3)
         switch_to_iframe(self.driver, By.NAME, 'goog-reviews-write-widget')
         time.sleep(2)
-        wait_element_for_click(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
+        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
+            (By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]'))).click()
         time.sleep(3)
-        wait_element_for_click(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
+        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
+            (By.XPATH, '//*[@id="ZRGZAf"]/span'))).click()
+        # wait_element_for_click(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
+        time.sleep(3)
+        # wait_element_for_click(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
         logger.info('Review created')
 
     def close_context(self=None):
@@ -80,8 +88,7 @@ class GoogleReviews:
 
 if __name__ == '__main__':
     emails = {
-        'valerija.korolevat2nd0@gmail.com': 'W6r4YejgMoRh7vu',
-        'jahodogevuyi76301@gmail.com': 'VDx44W8A39n5JZW',
+
         'yeziluxaxug@gmail.com': '5LvRmDBUKThEdhr',
         'supeloviwusis@gmail.com': 'w896JL0m3c460VG'}
     for email, password in emails.items():
