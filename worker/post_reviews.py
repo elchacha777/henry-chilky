@@ -21,7 +21,8 @@ class GoogleReviews:
         self.options.add_argument("--disable-setuid-sandbox")
         self.options.add_argument("--disable-extensions")
         self.options.add_argument("--disable-dev-shm-usage")
-        self.options.add_argument("--lang=en")
+        # self.options.add_argument("--lang=en")
+        self.options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
         self.driver = uc.Chrome(use_subprocess=True, options=self.options)
 
     def get_page(self):
