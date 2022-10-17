@@ -20,6 +20,7 @@ class GoogleReviews:
         self.options.add_argument("--no-sandbox")
         self.options.add_argument("--disable-setuid-sandbox")
         self.options.add_argument("--disable-extensions")
+        self.options.add_argument("--disable-dev-shm-usage")
         self.driver = uc.Chrome(use_subprocess=True, options=self.options)
 
     def get_page(self):
