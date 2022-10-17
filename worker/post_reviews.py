@@ -17,8 +17,8 @@ class GoogleReviews:
         self.review_url = review_url
         self.url = 'https://accounts.google.com/ServiceLogin'
         self.options = uc.ChromeOptions()
-        # self.options.arguments.extend(["--no-sandbox", "--disable-setuid-sandbox"])
-        #
+        self.options.arguments.extend(["--no-sandbox", "--disable-setuid-sandbox", "--disable-extensions"])
+
         self.driver = uc.Chrome(use_subprocess=True, options=self.options)
 
     def get_page(self):
