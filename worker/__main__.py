@@ -14,13 +14,14 @@ class Worker:
         self.google_reviews = None
 
     def main(self, url):
-        _id = 1
 
 
         for i in range(get_all_emails() + 1):
+            _id = 1
+
             # print(_id)
             attempts = 5
-            logger.info(f'{attempts}')
+            logger.info(f'{attempts} for email with id:{_id}')
             while attempts:
                 try:
                     logger.info(f'attempts {attempts}')
