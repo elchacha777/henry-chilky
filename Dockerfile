@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:stable as base
 #LABEL maintainer "Sean Pianka <pianka@eml.cc>"
 
 ## For chromedriver installation: curl/wget/libgconf/unzip
