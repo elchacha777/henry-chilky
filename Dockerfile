@@ -1,4 +1,4 @@
-FROM debian:stable as base
+FROM debian:stable
 
 
 
@@ -32,22 +32,21 @@ COPY ./requirements.txt ./requirements.txt
 RUN pip3 install -r requirements.txt
 #CMD sh -c "python orm.py"
 #CMD ['python3', './db/orm.py']
-CMD ['python3', './db/orm.py']
 
 #CMD ["createdb", "googlegmail"]
 
 #FROM base as db
 #COPY db ./db
 #CMD sh -c "python orm.py"
-FROM base as worker
+
 
 COPY worker ./worker
 COPY run.sh .
 CMD /bin/bash run.sh
+CMD ['python3', './db/orm.py']
 
 #CMD sh -c "python3 -m worker"
 
-FROM base as web
 
 COPY web ./web
 
