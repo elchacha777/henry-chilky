@@ -40,7 +40,7 @@ def get_button(buttons):
 #     raise 'No found required button'
 
 def click_on_button(button):
-    attempts = 20
+    attempts = 40
     while attempts:
         try:
             button.click()
