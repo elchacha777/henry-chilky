@@ -13,7 +13,6 @@
        - POSTGRES_USER:postgres
        - POSTGRES_PASSWORD:password
        - POSTGRES_HOST_AUTH_METHOD=trust
-       - POSTGRES_DB:postgres
       restart: always
 
 
@@ -65,7 +64,9 @@
 
       build:
          context: .
-
+         target: worker
+      ports:
+        - "8088"
       restart: always
       env_file: .env
       volumes:
