@@ -12,9 +12,9 @@ logger = get_logger('google_reviews')
 
 class GoogleReviews:
 
-    def __init__(self):
-        self.review_url = 'https://www.google.com/maps/place/%D0%9A%D1%83%D1%80%D0%BC%D0%B0%D0%BD+%D0%9A%D0%B0%D1%84%D0%B5+%D0%9A%D0%B5%D0%BD%D1%87/@42.9174501,74.6297435,16.92z/data=!4m12!1m6!3m5!1s0x0:0xdb9a5b5ad899367e!2z0J_QsNC9INCQ0LfQuNCw0YI!8m2!3d42.8736383!4d74.5808161!3m4!1s0x389eb98ae7b1ed75:0x5d3b4c20063735b7!8m2!3d42.9191705!4d74.6316092'
-        # self.review_url = review_url
+    def __init__(self, review_url):
+        # self.review_url = 'https://www.google.com/maps/place/%D0%9A%D1%83%D1%80%D0%BC%D0%B0%D0%BD+%D0%9A%D0%B0%D1%84%D0%B5+%D0%9A%D0%B5%D0%BD%D1%87/@42.9174501,74.6297435,16.92z/data=!4m12!1m6!3m5!1s0x0:0xdb9a5b5ad899367e!2z0J_QsNC9INCQ0LfQuNCw0YI!8m2!3d42.8736383!4d74.5808161!3m4!1s0x389eb98ae7b1ed75:0x5d3b4c20063735b7!8m2!3d42.9191705!4d74.6316092'
+        self.review_url = review_url
         self.url = 'https://accounts.google.com/ServiceLogin'
         self.options = uc.ChromeOptions()
         self.options.add_argument("--no-sandbox")
