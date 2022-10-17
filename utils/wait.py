@@ -52,8 +52,8 @@ def wait_web_driver(driver, by, xpath):
     attempts = 20
     while attempts:
         try:
-            WebDriverWait(driver, 10).until(EC.element_to_be_clickable((by, xpath))).click()
-            return True
+            element = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((by, xpath)))
+            return element
         except Exception as e:
             logger.info(f'{e}')
             attempts -= 1
