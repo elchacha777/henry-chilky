@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
 import time
 from envs import get_logger
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 logger = get_logger('google_reviews')
 
 
@@ -45,3 +46,17 @@ def switch_to_iframe(driver, by, element):
             attempts -= 1
             time.sleep(1)
     raise 'Error while switch_to_iframe'
+
+
+def wait_web_driver(driver, by, xpath):
+    attempts = 20
+    while attempts:
+        try:
+            WebDriverWait(driver, 10).until(EC.element_to_be_clickable((by, xpath))).click()
+            return True
+        except Exception as e:
+            logger.info(f'{e}')
+            attempts -= 1
+            time.sleep(1)
+    raise 'Error while wait'
+

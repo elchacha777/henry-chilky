@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from envs import get_logger
 from utils.button import get_button, click_on_button
-from utils.wait import wait_element_for_click, wait_element_for_send, switch_to_iframe
+from utils.wait import wait_element_for_click, wait_element_for_send, switch_to_iframe, wait_web_driver
 import os
 import time
 from webdriver_manager.chrome import ChromeDriverManager
@@ -16,7 +16,7 @@ logger = get_logger('google_reviews')
 class GoogleReviews:
 
     def __init__(self, review_url):
-        # self.review_url = 'https://www.google.com/maps/place/%D0%9A%D1%83%D1%80%D0%BC%D0%B0%D0%BD+%D0%9A%D0%B0%D1%84%D0%B5+%D0%9A%D0%B5%D0%BD%D1%87/@42.9174501,74.6297435,16.92z/data=!4m12!1m6!3m5!1s0x0:0xdb9a5b5ad899367e!2z0J_QsNC9INCQ0LfQuNCw0YI!8m2!3d42.8736383!4d74.5808161!3m4!1s0x389eb98ae7b1ed75:0x5d3b4c20063735b7!8m2!3d42.9191705!4d74.6316092'
+        # self.review_url = 'https://www.google.com/maps/place/Maroush+Park+Royal/@51.5313201,-0.280724,15.11z/data=!4m13!1m7!3m6!1s0x47d8a00baf21de75:0x52963a5addd52a99!2z0JvQvtC90LTQvtC9LCDQktC10LvQuNC60L7QsdGA0LjRgtCw0L3QuNGP!3b1!8m2!3d51.5072178!4d-0.1275862!3m4!1s0x4876115d05c8d531:0x540c94266558ed3e!8m2!3d51.5341256!4d-0.2672221'
         self.review_url = review_url
         self.url = 'https://accounts.google.com/ServiceLogin'
         self.options = uc.ChromeOptions()
@@ -72,11 +72,14 @@ class GoogleReviews:
         time.sleep(3)
         switch_to_iframe(self.driver, By.NAME, 'goog-reviews-write-widget')
         time.sleep(2)
-        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]'))).click()
+
+        wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
+        # WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]'))).click()
         time.sleep(3)
-        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="ZRGZAf"]/span'))).click()
+        wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
+
+        # WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
+        #     (By.XPATH, '//*[@id="ZRGZAf"]/span'))).click()
         # wait_element_for_click(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         time.sleep(3)
         # wait_element_for_click(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
