@@ -12,9 +12,9 @@ logger = get_logger('google_reviews')
 
 class GoogleReviews:
 
-    def __init__(self):
-        self.review_url = 'https://www.google.com/maps/place/%D0%A3%D0%BB%D1%83%D1%83-%D0%A2%D0%BE%D0%BE/@42.8834923,74.5868375,15.77z/data=!4m5!3m4!1s0x389ec933bd943621:0x18ab7a9e283eaf18!8m2!3d42.8844016!4d74.5792839'
-        # self.review_url = review_url
+    def __init__(self,review_url):
+        # self.review_url = 'https://www.google.com/maps/place/%D0%A3%D0%BB%D1%83%D1%83-%D0%A2%D0%BE%D0%BE/@42.8834923,74.5868375,15.77z/data=!4m5!3m4!1s0x389ec933bd943621:0x18ab7a9e283eaf18!8m2!3d42.8844016!4d74.5792839'
+        self.review_url = review_url
         self.url = 'https://accounts.google.com/ServiceLogin'
         self.options = uc.ChromeOptions()
         # self.options.arguments.extend(["--no-sandbox", "--disable-setuid-sandbox"])

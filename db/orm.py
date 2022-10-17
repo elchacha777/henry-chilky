@@ -38,14 +38,14 @@ if __name__ == '__main__':
         pass
 
 
-    # with open('data.txt', 'r+') as file:
-    #     lines = file.readlines()
-    #     for line in lines:
-    #         string = line.replace('\n', '')
-    #         lst = string.split(' ')
-    #         res_dct = {lst[i]: lst[i + 1] for i in range(0, len(lst)-1)}
-    #         for email, password in res_dct.items():
-    #             save_email(email, password)
+    with open('data.txt', 'r+') as file:
+        lines = file.readlines()
+        for line in lines:
+            string = line.replace('\n', '')
+            lst = string.split(' ')
+            res_dct = {lst[i]: lst[i + 1] for i in range(0, len(lst)-1)}
+            for email, password in res_dct.items():
+                save_email(email, password)
 
 
 
