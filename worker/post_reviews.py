@@ -72,13 +72,14 @@ class GoogleReviews:
         logger.info('Click on button to leave review')
         time.sleep(3)
         switch_to_iframe(self.driver, By.NAME, 'goog-reviews-write-widget')
-        time.sleep(2)
+        time.sleep(10)
         # button = wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         #
         # click_on_button(self.driver, button)
         # time.sleep(2)
         # button1 = wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
         # click_on_button(self.driver, button1)
+
         button_click(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         logger.info('web driver wait')
         # wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
