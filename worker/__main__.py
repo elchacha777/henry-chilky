@@ -44,7 +44,8 @@ class Worker:
                     _id +=1
                     time.sleep(30)
                     break
-                except:
+                except Exception as e:
+                    logger.info(f'{e}')
                     obj.close_context()
                     logger.info(f'{email} didnt left a review')
                     attempts -=1
