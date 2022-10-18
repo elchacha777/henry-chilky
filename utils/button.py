@@ -23,7 +23,7 @@ def get_button(buttons):
             logger.info(f'{e}')
             attempts -= 1
             time.sleep(1)
-    raise 'No found required button'
+    return
 
 # def get_button_en(buttons):
 #     attempts = 20
