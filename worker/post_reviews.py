@@ -108,12 +108,14 @@ class GoogleReviews:
         #             return b
         # b = fast_test_1(button1)
         # self.driver.execute_script("arguments[0].click();", b)
-        # logger.info('web driver wait 2')
-        button = self.driver.find_element(By.ID, 'ZRGZAf')
-        logger.info(f'{button} last element')
-        time.sleep(5)
+        logger.info('web driver wait 2')
+        # button = self.driver.find_element(By.ID, 'ZRGZAf')
+        wait_element_for_click(self.driver, By.ID, 'ZRGZAf')
+
+        # logger.info(f'{button} last element')
+        # time.sleep(5)
         # wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
-        click_on_button(self.driver, button)
+        # click_on_button(self.driver, button)
 
         # WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable(
         #     (By.ID, 'ZRGZAf'))).click()

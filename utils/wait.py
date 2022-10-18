@@ -33,7 +33,7 @@ def wait_element_for_click(driver, by, element):
             logger.info(f'{e}')
             attempts -= 1
             time.sleep(1)
-    raise 'Error while wait_element_for_click'
+    return
 
 def switch_to_iframe(driver, by, element):
     attempts = 20
