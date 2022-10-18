@@ -94,6 +94,8 @@ class GoogleReviews:
         logger.info('Review created')
 
     def close_context(self=None):
+        self.driver.close()
+
         self.driver.quit()
 
 
