@@ -26,16 +26,29 @@ def get_email(id=id):
     return (email.email, email.password)
 
 
-
-
-
-
-if __name__ == '__main__':
+def create_table():
     try:
         with db_psql.atomic():
             db_psql.create_tables([Emails])
     except:
         pass
+
+def drop_table():
+    try:
+        with db_psql.atomic():
+            db_psql.drop_tables([Emails])
+    except:
+        pass
+
+
+
+if __name__ == '__main__':
+
+    create_table()
+    drop_table()
+
+
+
 
 
     with open('data.txt', 'r+') as file:

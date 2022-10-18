@@ -28,6 +28,7 @@ class Worker:
                     obj = GoogleReviews(url)
                     obj.get_page()
                     time.sleep(3)
+                    logger.info(f'id:{_id}')
                     (email, password) = get_email(_id)
                     obj.login(email, password)
                     logger.info(f'{email} started')
