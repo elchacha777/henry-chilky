@@ -41,6 +41,7 @@ class Worker:
                     obj.close_context()
                     logger.info(f'{email} left a review')
                     _id +=1
+                    time.sleep(30)
                     break
                 except:
                     obj.close_context()
