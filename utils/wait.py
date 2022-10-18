@@ -83,6 +83,7 @@ def button_click(driver, by: str, value: str) -> None:
         if button:
             try:
                 button.click()
-            except (ElementClickInterceptedException, ElementNotInteractableException):
+            except Exception as e:
+                logger.info(f'{e}')
                 button = driver.find_element(by, value)
                 driver.execute_script("arguments[0].click();", button)
