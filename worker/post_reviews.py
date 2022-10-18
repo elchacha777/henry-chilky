@@ -25,9 +25,12 @@ class GoogleReviews:
         self.options.add_argument("--disable-extensions")
         self.options.add_argument("--disable-dev-shm-usage")
         self.options.add_argument('--window-size=1920,1080')
+
         # self.options.add_argument("--lang=en")
         self.options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
+
         self.driver = uc.Chrome(use_subprocess=True, options=self.options)
+
 
     def get_page(self):
         self.driver.get(self.url)
@@ -80,14 +83,21 @@ class GoogleReviews:
         # button1 = wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
         # click_on_button(self.driver, button1)
         time.sleep(20)
-        button_click(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
+        button = self.driver.find_elements(By.CLASS_NAME, 's2xyy').get_attribute('data-rating')
+        if button == 5:
+            # button_click(self.driver, By.CLASS_NAME, 's2xyy')
+            self.driver.execute_script("arguments[0].click();", button)
         logger.info('web driver wait')
+
+        button = self.driver.find_elements(By.CLASS_NAME, 's2xyy').get_attribute('data-rating')
+        if button == 5:
+            # button_click(self.driver, By.CLASS_NAME, 's2xyy')
+            self.driver.execute_script("arguments[0].click();", button)
         # wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         # WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]'))).click()
         time.sleep(20)
-
-        button_click(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
-
+        button1 = self.driver.find_element(By.ID, 'ZRGZAf')
+        self.driver.execute_script("arguments[0].click();", button1)
         logger.info('web driver wait 2')
 
         # wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')

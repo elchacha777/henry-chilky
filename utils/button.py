@@ -13,7 +13,7 @@ def get_button(buttons):
             for button in buttons:
                 review = button.get_attribute('data-value')
                 logger.info(f'get attribute {review}')
-                if review == 'Rezension schreiben':
+                if review == 'Оставить отзыв':
                     time.sleep(1)
                     return button
                 elif review == 'Write a review':
@@ -45,6 +45,7 @@ def click_on_button(driver, button):
     attempts = 20
     while attempts:
         try:
+
             driver.execute_script("arguments[0].click();", button)
 
             return True
