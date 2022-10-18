@@ -8,7 +8,6 @@ def get_button(buttons):
     attempts = 20
     while attempts:
         logger.info('start function get_button')
-
         try:
             for button in buttons:
                 review = button.get_attribute('data-value')
