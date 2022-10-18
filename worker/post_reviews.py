@@ -53,8 +53,8 @@ class GoogleReviews:
     def get_review_page(self):
         self.driver.get(self.review_url)
         time.sleep(5)
-        button = self.driver.find_element(By.XPATH, '//*[@id="gb"]/div/div/div[1]/div[2]/div/a').get_attribute('title')
-        print(button)
+        # button = self.driver.find_element(By.XPATH, '//*[@id="gb"]/div/div/div[1]/div[2]/div/a').get_attribute('title')
+        # print(button)
 
     def open_review(self):
         time.sleep(5)
@@ -79,12 +79,13 @@ class GoogleReviews:
         # time.sleep(2)
         # button1 = wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
         # click_on_button(self.driver, button1)
-
+        time.sleep(20)
         button_click(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         logger.info('web driver wait')
         # wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         # WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]'))).click()
-        time.sleep(3)
+        time.sleep(20)
+
         button_click(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
 
         logger.info('web driver wait 2')
