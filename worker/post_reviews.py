@@ -83,8 +83,13 @@ class GoogleReviews:
         # button1 = wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
         # click_on_button(self.driver, button1)
         time.sleep(20)
-        button = self.driver.find_elements(By.CLASS_NAME, 's2xyy').get_attribute('data-rating')
-        if button == 5:
+        button = self.driver.find_elements(By.CLASS_NAME, 's2xyy')
+        def fast_test(button):
+            for b in button:
+                if b.get_attribute('data-rating') == 5:
+                    return b
+
+        if fast_test(button) == 5:
             # button_click(self.driver, By.CLASS_NAME, 's2xyy')
             self.driver.execute_script("arguments[0].click();", button)
         logger.info('web driver wait')
