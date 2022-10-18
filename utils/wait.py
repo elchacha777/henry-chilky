@@ -48,15 +48,32 @@ def switch_to_iframe(driver, by, element):
     raise 'Error while switch_to_iframe'
 
 
-def wait_web_driver(driver, by, xpath):
+def wait_web_driver(driver, by,element):
     attempts = 20
     while attempts:
         try:
-            element = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((by, xpath)))
+            element = driver.find_element(by, element)
+
             return element
         except Exception as e:
             logger.info(f'{e}')
             attempts -= 1
             time.sleep(1)
     raise 'Error while wait'
+
+
+
+# def wait_element_for_click(driver, by, element):
+#     attempts = 20
+#     while attempts:
+#         try:
+#             input_email = driver.find_element(by, element)
+#             input_email.click()
+#             logger.info('Click on button')
+#             return True
+#         except Exception as e:
+#             logger.info(f'{e}')
+#             attempts -= 1
+#             time.sleep(1)
+#     raise 'Error while wait_element_for_click'
 
