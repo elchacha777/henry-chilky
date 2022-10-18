@@ -101,15 +101,21 @@ class GoogleReviews:
         # wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         # WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]'))).click()
         time.sleep(20)
-        button1 = self.driver.find_element(By.XPATH, '//*[@id="ZRGZAf"]/div[3]')
-
-        self.driver.execute_script("arguments[0].click();", button1)
-        logger.info('web driver wait 2')
+        # button1 = self.driver.find_element(By.ID, 'ZRGZAf')
+        # // *[ @ id = "ZRGZAf"] / span
+        # button1 = self.driver.find_elements(By.XPATH, '//*[@id="ZRGZAf"]/span')
+        # def fast_test_1(button):
+        #     for b in button:
+        #         if b.text == 'Post':
+        #             return b
+        # b = fast_test_1(button1)
+        # self.driver.execute_script("arguments[0].click();", b)
+        # logger.info('web driver wait 2')
 
         # wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
 
-        # WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable(
-        #     (By.XPATH, '//*[@id="ZRGZAf"]/span'))).click()
+        WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable(
+            (By.XPATH, '//*[@id="ZRGZAf"]/span'))).click()
         # wait_element_for_click(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         # time.sleep(3)
         # wait_element_for_click(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
