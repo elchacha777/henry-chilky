@@ -116,7 +116,8 @@ class GoogleReviews:
             showmore_link = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ZRGZAf"]')))
             showmore_link.click()
 
-        except ElementClickInterceptedException:
+        except Exception as e:
+            logger.info(f'{e}')
             print("Trying to click on the button again")
             self.driver.execute_script("arguments[0].click()", showmore_link)
 
