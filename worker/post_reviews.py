@@ -101,7 +101,8 @@ class GoogleReviews:
         # wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         # WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]'))).click()
         time.sleep(20)
-        button1 = self.driver.find_element(By.ID, 'ZRGZAf')
+        button1 = self.driver.find_element(By.XPATH, '//*[@id="ZRGZAf"]/div[3]')
+
         self.driver.execute_script("arguments[0].click();", button1)
         logger.info('web driver wait 2')
 
