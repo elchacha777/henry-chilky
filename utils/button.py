@@ -10,7 +10,7 @@ logger = get_logger('google_reviews')
 
 def get_button(buttons):
     attempts = 20
-    while attempts:
+    for i in attempts:
         logger.info('start function get_button')
 
         try:
