@@ -1,6 +1,6 @@
 from peewee import *
 
-db_psql = PostgresqlDatabase(database='postgres', user='postgres', password='password', host='postgres_host', port=5432)
+db_psql = PostgresqlDatabase(database='postgres', user='postgres')
 
 
 class Emails(Model):
@@ -27,11 +27,8 @@ def get_email(id=id):
 
 
 def create_table():
-    try:
         with db_psql.atomic():
             db_psql.create_tables([Emails])
-    except:
-        pass
 
 def drop_table():
     try:
@@ -43,7 +40,7 @@ def drop_table():
 
 
 if __name__ == '__main__':
-    drop_table()
+    # drop_table()
     create_table()
 
 

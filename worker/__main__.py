@@ -15,9 +15,10 @@ class Worker:
 
     def main(self, url):
 
+        _id = 1
 
         for i in range(get_all_emails() + 1):
-            _id = 1
+
 
             # print(_id)
             attempts = 5
@@ -39,6 +40,8 @@ class Worker:
                     time.sleep(5)
                     obj.close_context()
                     logger.info(f'{email} left a review')
+                    _id +=1
+                    break
                 except:
                     obj.close_context()
                     logger.info(f'{email} didnt left a review')
@@ -47,9 +50,7 @@ class Worker:
                         _id += 1
                         break
 
-                else:
-                    _id +=1
-                    break
+
 
 
 
