@@ -1,3 +1,4 @@
+from selenium.common import ElementClickInterceptedException, ElementNotInteractableException
 from selenium.webdriver.common.by import By
 import time
 from envs import get_logger
@@ -77,3 +78,11 @@ def wait_web_driver(driver, by,element):
 #             time.sleep(1)
 #     raise 'Error while wait_element_for_click'
 
+def button_click(driver, by: str, value: str) -> None:
+        button = driver.find_element(by, value)
+        if button:
+            try:
+                button.click()
+            except (ElementClickInterceptedException, ElementNotInteractableException):
+                button = driver.find_element(by, value)
+                driver.execute_script("arguments[0].click();", button)

@@ -25,7 +25,6 @@ class Worker:
             logger.info(f'{attempts} for email with id:{_id}')
             while attempts:
                 try:
-                    time.sleep(30)
                     logger.info(f'attempts {attempts}')
                     obj = GoogleReviews(url)
                     obj.get_page()

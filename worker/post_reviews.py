@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from envs import get_logger
 from utils.button import get_button, click_on_button
-from utils.wait import wait_element_for_click, wait_element_for_send, switch_to_iframe, wait_web_driver
+from utils.wait import wait_element_for_click, wait_element_for_send, switch_to_iframe, wait_web_driver, button_click
 import os
 import time
 from webdriver_manager.chrome import ChromeDriverManager
@@ -79,16 +79,19 @@ class GoogleReviews:
         # time.sleep(2)
         # button1 = wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
         # click_on_button(self.driver, button1)
+        button_click(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         logger.info('web driver wait')
         # wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
-        WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]'))).click()
+        # WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]'))).click()
         time.sleep(3)
+        button_click(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
+
         logger.info('web driver wait 2')
 
         # wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
 
-        WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="ZRGZAf"]/span'))).click()
+        # WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable(
+        #     (By.XPATH, '//*[@id="ZRGZAf"]/span'))).click()
         # wait_element_for_click(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         # time.sleep(3)
         # wait_element_for_click(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
