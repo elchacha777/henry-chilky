@@ -1,4 +1,5 @@
 import undetected_chromedriver as uc
+from selenium.common import ElementClickInterceptedException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -110,7 +111,14 @@ class GoogleReviews:
         # self.driver.execute_script("arguments[0].click();", b)
         logger.info('web driver wait 2')
         # button = self.driver.find_element(By.ID, 'ZRGZAf')
-        wait_element_for_click(self.driver, By.ID, 'ZRGZAf')
+        # wait_element_for_click(self.driver, By.ID, 'ZRGZAf')
+        try:
+            showmore_link = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ZRGZAf"]')))
+            showmore_link.click()
+
+        except ElementClickInterceptedException:
+            print("Trying to click on the button again")
+            self.driver.execute_script("arguments[0].click()", showmore_link)
 
         # logger.info(f'{button} last element')
         # time.sleep(5)
