@@ -79,9 +79,10 @@ class GoogleReviews:
         # logger.info(f'{frame} frame element')
         # frame = self.driver.find_element(By.XPATH, '//iframe[@class="goog-reviews-write-widget"]')
 
-        frame = self.driver.find_element(By.NAME, 'goog-reviews-write-widget')
+        # frame = self.driver.find_element(By.NAME, 'goog-reviews-write-widget')
         time.sleep(20)
-        switch_to_iframe(self.driver, frame)
+        # switch_to_iframe(self.driver, frame)
+        switch_to_iframe(self.driver, By.NAME, 'goog-reviews-write-widget')
         logger.info(f'switched to frame')
         # self.driver.switch_to.frame(frame)
         # button = wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
