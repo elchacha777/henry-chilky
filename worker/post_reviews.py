@@ -80,7 +80,7 @@ class GoogleReviews:
         # frame = self.driver.find_element(By.XPATH, '//iframe[@class="goog-reviews-write-widget"]')
 
         # frame = self.driver.find_element(By.NAME, 'goog-reviews-write-widget')
-        time.sleep(20)
+        time.sleep(40)
         # switch_to_iframe(self.driver, frame)
         switch_to_iframe(self.driver, By.NAME, 'goog-reviews-write-widget')
 
