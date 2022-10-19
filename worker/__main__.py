@@ -21,7 +21,7 @@ class Worker:
 
 
             # print(_id)
-            attempts = 5
+            attempts = 2
             logger.info(f'{attempts} for email with id:{_id}')
             while attempts:
                 try:

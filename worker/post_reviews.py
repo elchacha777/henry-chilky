@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from envs import get_logger
 from utils.button import get_button, click_on_button
+from utils.check import check_cookie, cookie_accept_btn_exists
 from utils.wait import wait_element_for_click, wait_element_for_send, switch_to_iframe
 import os
 import time
@@ -50,49 +51,54 @@ class GoogleReviews:
         wait_element_for_click(self.driver, By.ID, 'passwordNext')
         logger.info('Google enter password ')
         time.sleep(5)
+        # check_cookie(self.driver)
+        time.sleep(5)
 
-
+    def check_verify(self):
+        def login_btn_exists(driver):
+            try:
+                login_btn = driver.find_element(By.XPATH, '//a[@id="gb_70"]')
+                return True
+            except:
+                return False
 
     def get_review_page(self):
         self.driver.get(self.review_url)
-        time.sleep(5)
+        time.sleep(10)
+        assert not self.driver.current_url.startswith('https://consent.google.com/')
+
+
         # button = self.driver.find_element(By.XPATH, '//*[@id="gb"]/div/div/div[1]/div[2]/div/a').get_attribute('title')
         # print(button)
 
     def open_review(self):
+        cookie_accept_btn = cookie_accept_btn_exists(self.driver)
+
+        if cookie_accept_btn:
+            click_on_button(self.driver, cookie_accept_btn)
+            logger.info(f'cookie_accept_btn pressed {cookie_accept_btn}')
+        else:
+            logger.info(f'NO COOKIE BUTTON!!!')
+
         time.sleep(5)
         buttons = self.driver.find_elements(By.XPATH, '//div[@class="TrU0dc kdfrQc"]/button')[-1]
         logger.info(f'{buttons}')
         time.sleep(10)
-        # buttons.click()
 
         logger.info('Open google maps')
 
         time.sleep(10)
-        # button = get_button(buttons)
         time.sleep(5)
         click_on_button(self.driver, buttons)
         logger.info(f'{buttons} to click')
         # click_on_button(button)
         logger.info('Click on button to leave review')
-        time.sleep(20)
-        # logger.info(f'{frame} frame element')
-        # frame = self.driver.find_element(By.XPATH, '//iframe[@class="goog-reviews-write-widget"]')
-
-        # frame = self.driver.find_element(By.NAME, 'goog-reviews-write-widget')
-        time.sleep(20)
-        # switch_to_iframe(self.driver, frame)
-        switch_to_iframe(self.driver, By.NAME, 'goog-reviews-write-widget')
-
+        time.sleep(15)
+        frame = self.driver.find_element(By.XPATH, '//iframe[@class="goog-reviews-write-widget"]')
+        time.sleep(7)
+        self.driver.switch_to.frame(frame)
         logger.info(f'switched to frame')
-        # self.driver.switch_to.frame(frame)
-        # button = wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
-        #
-        # click_on_button(self.driver, button)
-        # time.sleep(2)
-        # button1 = wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
-        # click_on_button(self.driver, button1)
-        time.sleep(40)
+        time.sleep(15)
         # button = self.driver.find_elements(By.CLASS_NAME, 's2xyy')
         b = self.driver.find_element(By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         try:
@@ -101,75 +107,20 @@ class GoogleReviews:
             self.driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", b)
 
 
-        # def fast_test(driver, button):
-        #     for b in button:
-        #         if b.get_attribute('data-rating') == 5:
-        #             time.sleep(5)
-        #             try:
-        #                 b.click()
-        #             except:
-        #                 driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", b)
-        #
-        # fast_test(self.driver, button)
 
-        # if fast_test(button) == 5:
-        #     # button_click(self.driver, By.CLASS_NAME, 's2xyy')
-        #     self.driver.execute_script("arguments[0].click();", button)
-
-            # self.driver.execute_script("arguments[0].click();", button)
-
-        # button_click(self.driver, By.CLASS_NAME, 's2xyy')
-        # self.driver.execute_script("arguments[0].click();", button)
         logger.info('web driver wait')
 
-        # button = self.driver.find_elements(By.CLASS_NAME, 's2xyy').get_attribute('data-rating')
-        # if button == 5:
-        #     # button_click(self.driver, By.CLASS_NAME, 's2xyy')
-        #     self.driver.execute_script("arguments[0].click();", button)
-        # wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
-        # WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]'))).click()
-        time.sleep(20)
-        # button1 = self.driver.find_element(By.ID, 'ZRGZAf')
-        # // *[ @ id = "ZRGZAf"] / span
-        # button1 = self.driver.find_elements(By.XPATH, '//*[@id="ZRGZAf"]/span')
-        # def fast_test_1(button):
-        #     for b in button:
-        #         if b.text == 'Post':
-        #             return b
-        # b = fast_test_1(button1)
-        # self.driver.execute_script("arguments[0].click();", b)
-        logger.info('web driver wait 2')
-        # button = self.driver.find_element(By.ID, 'ZRGZAf')
 
-        # wait_element_for_click(self.driver, By.ID, 'ZRGZAf')
-        # try:
-        #     showmore_link = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ZRGZAf"]')))
-        #     showmore_link.click()
+        time.sleep(20)
+
         parent = self.driver.find_element(By.ID, 'ZRGZAf')
         logger.info(f'{parent}')
         child = parent.find_element(By.CLASS_NAME, 'VfPpkd-RLmnJb')
         logger.info(f'{child}')
 
         time.sleep(5)
-        # child.click()
         self.driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", child)
-        # except Exception as e:
-        #     logger.info(f'{e}')
-        #     print("Trying to click on the button again")
-        #     showmore_link = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ZRGZAf"]')))
-        #
-        #     self.driver.execute_script("arguments[0].click()", showmore_link)
 
-        # logger.info(f'{button} last element')
-        # time.sleep(5)
-        # wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
-        # click_on_button(self.driver, button)
-
-        # WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable(
-        #     (By.ID, 'ZRGZAf'))).click()
-        # wait_element_for_click(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
-        # time.sleep(3)
-        # wait_element_for_click(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
         logger.info('Review created')
 
     def close_context(self=None):
