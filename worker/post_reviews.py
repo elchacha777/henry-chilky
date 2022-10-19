@@ -61,13 +61,18 @@ class GoogleReviews:
 
     def open_review(self):
         time.sleep(5)
-        buttons = self.driver.find_elements(By.CLASS_NAME, 'S9kvJb')
-        logger.info('Open google maps')
+        buttons = self.driver.find_elements(By.XPATH, '//div[@class="TrU0dc kdfrQc"]/button')[-1]
+        logger.info(f'{buttons}')
         time.sleep(10)
-        button = get_button(buttons)
+        # buttons.click()
+
+        logger.info('Open google maps')
+
+        time.sleep(10)
+        # button = get_button(buttons)
         time.sleep(5)
-        click_on_button(self.driver, button)
-        logger.info(f'{button} to click')
+        click_on_button(self.driver, buttons)
+        logger.info(f'{buttons} to click')
         time.sleep(5)
         # click_on_button(button)
         logger.info('Click on button to leave review')
