@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from envs import get_logger
 from utils.button import get_button, click_on_button
-from utils.check import check_cookie, cookie_accept_btn_exists
+from utils.check import cookie_accept_btn_exists
 from utils.wait import wait_element_for_click, wait_element_for_send, switch_to_iframe
 import os
 import time
