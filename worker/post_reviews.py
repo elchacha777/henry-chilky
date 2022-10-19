@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from envs import get_logger
 from utils.button import get_button, click_on_button
-from utils.wait import wait_element_for_click, wait_element_for_send
+from utils.wait import wait_element_for_click, wait_element_for_send, switch_to_iframe
 import os
 import time
 from webdriver_manager.chrome import ChromeDriverManager
@@ -77,11 +77,9 @@ class GoogleReviews:
         # click_on_button(button)
         logger.info('Click on button to leave review')
         time.sleep(20)
-        frame = self.driver.find_element(By.NAME, 'goog-reviews-write-widget')
-        logger.info(f'{frame} frame element')
-        time.sleep(20)
-        self.driver.switch_to.frame(frame)
-        # switch_to_iframe(self.driver, By.NAME, 'goog-reviews-write-widget')
+        # logger.info(f'{frame} frame element')
+        # self.driver.switch_to.frame(frame)
+        switch_to_iframe(self.driver)
         time.sleep(10)
         # button = wait_web_driver(self.driver, By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         #
