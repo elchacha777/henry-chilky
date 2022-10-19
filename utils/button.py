@@ -17,7 +17,7 @@ def get_button(buttons):
             for button in buttons:
                 review = button.get_attribute('data-value')
                 logger.info(f'get attribute {review}')
-                if review == 'Оставить отзыв':
+                if review == 'Rezension schreiben':
                     time.sleep(1)
                     return button
                 elif review == 'Write a review':
