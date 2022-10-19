@@ -25,7 +25,6 @@ class GoogleReviews:
         self.options.add_argument("--disable-setuid-sandbox")
         self.options.add_argument("--disable-extensions")
         self.options.add_argument("--disable-dev-shm-usage")
-        self.options.add_argument('--window-size=1920,1080')
 
         # self.options.add_argument("--lang=en")
         self.options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
@@ -82,15 +81,33 @@ class GoogleReviews:
         # button1 = wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
         # click_on_button(self.driver, button1)
         time.sleep(20)
-        button = self.driver.find_elements(By.CLASS_NAME, 's2xyy')
-        def fast_test(button):
-            for b in button:
-                if b.get_attribute('data-rating') == 5:
-                    return b
+        # button = self.driver.find_elements(By.CLASS_NAME, 's2xyy')
+        b = self.driver.find_element(By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
+        try:
+            b.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", b)
 
-        if fast_test(button) == 5:
-            # button_click(self.driver, By.CLASS_NAME, 's2xyy')
-            self.driver.execute_script("arguments[0].click();", button)
+
+        # def fast_test(driver, button):
+        #     for b in button:
+        #         if b.get_attribute('data-rating') == 5:
+        #             time.sleep(5)
+        #             try:
+        #                 b.click()
+        #             except:
+        #                 driver.execute_script("arguments[0].click();", b)
+        #
+        # fast_test(self.driver, button)
+
+        # if fast_test(button) == 5:
+        #     # button_click(self.driver, By.CLASS_NAME, 's2xyy')
+        #     self.driver.execute_script("arguments[0].click();", button)
+
+            # self.driver.execute_script("arguments[0].click();", button)
+
+        # button_click(self.driver, By.CLASS_NAME, 's2xyy')
+        # self.driver.execute_script("arguments[0].click();", button)
         logger.info('web driver wait')
 
         # button = self.driver.find_elements(By.CLASS_NAME, 's2xyy').get_attribute('data-rating')
@@ -111,17 +128,25 @@ class GoogleReviews:
         # self.driver.execute_script("arguments[0].click();", b)
         logger.info('web driver wait 2')
         # button = self.driver.find_element(By.ID, 'ZRGZAf')
+
         # wait_element_for_click(self.driver, By.ID, 'ZRGZAf')
-        try:
-            showmore_link = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ZRGZAf"]')))
-            showmore_link.click()
+        # try:
+        #     showmore_link = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ZRGZAf"]')))
+        #     showmore_link.click()
+        parent = self.driver.find_element(By.ID, 'ZRGZAf')
+        logger.info(f'{parent}')
+        child = parent.find_element(By.CLASS_NAME, 'VfPpkd-RLmnJb')
+        logger.info(f'{child}')
 
-        except Exception as e:
-            logger.info(f'{e}')
-            print("Trying to click on the button again")
-            showmore_link = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ZRGZAf"]')))
-
-            self.driver.execute_script("arguments[0].click()", showmore_link)
+        time.sleep(5)
+        # child.click()
+        self.driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", child)
+        # except Exception as e:
+        #     logger.info(f'{e}')
+        #     print("Trying to click on the button again")
+        #     showmore_link = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ZRGZAf"]')))
+        #
+        #     self.driver.execute_script("arguments[0].click()", showmore_link)
 
         # logger.info(f'{button} last element')
         # time.sleep(5)
