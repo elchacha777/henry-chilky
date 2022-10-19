@@ -26,11 +26,12 @@ class GoogleReviews:
         self.options.add_argument("--disable-extensions")
         self.options.add_argument("--disable-dev-shm-usage")
 
+
         # self.options.add_argument("--lang=en")
         self.options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
 
         self.driver = uc.Chrome(use_subprocess=True, options=self.options)
-
+        self.driver.manage().window().maximize()
 
     def get_page(self):
         self.driver.get(self.url)
@@ -96,7 +97,7 @@ class GoogleReviews:
         #             try:
         #                 b.click()
         #             except:
-        #                 driver.execute_script("arguments[0].click();", b)
+        #                 driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", b)
         #
         # fast_test(self.driver, button)
 
