@@ -1,8 +1,11 @@
 from peewee import *
 
+
+
+
+
+
 db_psql = PostgresqlDatabase(database='postgres', user='postgres', password='password', host='postgres_host', port=5432)
-
-
 class Emails(Model):
     email = CharField()
     password = CharField()
