@@ -35,11 +35,10 @@ def wait_element_for_click(driver, by, element):
             time.sleep(1)
     return
 
-def switch_to_iframe(driver):
+def switch_to_iframe(driver, frame):
     attempts = 20
     while attempts:
         try:
-            frame = driver.find_element(By.NAME, 'goog-reviews-write-widget')
             driver.switch_to.frame(frame)
             logger.info('Switch to frame')
             return True
