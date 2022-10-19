@@ -75,7 +75,7 @@
         - redis
         - postgres
       links:
-        - postgres:postgres_host
+        - postgres:postgres
 
    web:
 
