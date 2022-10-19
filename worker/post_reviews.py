@@ -80,7 +80,7 @@ class GoogleReviews:
         # frame = self.driver.find_element(By.XPATH, '//iframe[@class="goog-reviews-write-widget"]')
 
         # frame = self.driver.find_element(By.NAME, 'goog-reviews-write-widget')
-        time.sleep(40)
+        time.sleep(20)
         # switch_to_iframe(self.driver, frame)
         switch_to_iframe(self.driver, By.NAME, 'goog-reviews-write-widget')
 
@@ -92,7 +92,7 @@ class GoogleReviews:
         # time.sleep(2)
         # button1 = wait_web_driver(self.driver, By.XPATH, '//*[@id="ZRGZAf"]/span')
         # click_on_button(self.driver, button1)
-        time.sleep(20)
+        time.sleep(40)
         # button = self.driver.find_elements(By.CLASS_NAME, 's2xyy')
         b = self.driver.find_element(By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         try:
