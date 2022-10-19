@@ -50,7 +50,7 @@ def click_on_button(driver, button):
     while attempts:
         try:
 
-            driver.execute_script("arguments[0].click();", button)
+            driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", button)
 
             return True
         except Exception as e:

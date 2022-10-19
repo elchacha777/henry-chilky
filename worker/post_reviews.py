@@ -86,7 +86,7 @@ class GoogleReviews:
         try:
             b.click()
         except:
-            self.driver.execute_script("arguments[0].click();", b)
+            self.driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", b)
 
 
         # def fast_test(driver, button):
