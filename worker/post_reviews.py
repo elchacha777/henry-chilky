@@ -79,18 +79,21 @@ class GoogleReviews:
             logger.info(f'cookie_accept_btn pressed {cookie_accept_btn}')
         else:
             logger.info(f'NO COOKIE BUTTON!!!')
-
-        time.sleep(5)
-        buttons = self.driver.find_elements(By.XPATH, '//div[@class="TrU0dc kdfrQc"]/button')[-1]
-        logger.info(f'{buttons}')
         time.sleep(10)
+        review_btn_xpath = '//button[contains(@jsan, "7.DkEaL,0.aria-label,0.jsaction")]'
+        review_btn = self.driver.find_element(By.XPATH, review_btn_xpath)
+        review_btn.click()
+
+        time.sleep(10)
+
+        nested_review_btn_xpath = '//button[contains(@jsaction, "pane.place.writeReview;keydown:' \
+                                  'pane.place.writeReview")]'
+        nested_review_btn = self.driver.find_element(By.XPATH, nested_review_btn_xpath)
+        nested_review_btn.click()
 
         logger.info('Open google maps')
 
-        time.sleep(10)
         time.sleep(5)
-        click_on_button(self.driver, buttons)
-        logger.info(f'{buttons} to click')
         # click_on_button(button)
         logger.info('Click on button to leave review')
         time.sleep(15)
@@ -113,15 +116,13 @@ class GoogleReviews:
 
         time.sleep(20)
 
-        parent = self.driver.find_element(By.ID, 'ZRGZAf')
+        parent = self.driver.find_element(By.XPATH, '//*[@id="kCvOeb"]/div[2]/div/div[2]/div/button')
         logger.info(f'{parent}')
         child = parent.find_element(By.CLASS_NAME, 'VfPpkd-RLmnJb')
         logger.info(f'{child}')
 
         time.sleep(5)
         self.driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", child)
-
-        logger.info('Review created')
 
     def close_context(self=None):
         self.driver.close()
